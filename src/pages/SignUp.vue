@@ -113,26 +113,32 @@ const signUpModel:SignUpInterface = reactive( {
   email: "",
 });
 
+const arr = computed(() => [signUpModel.firstName, signUpModel.lastName])
+
 const rules = computed(() => ({
   firstName: {
-    required: helpers.withMessage("First Name is required", required),
+    required: helpers.withMessage(message.signUpValidation.firstNameReq, required),
   },
   lastName: {
-    required: helpers.withMessage("Last Name is required", required)
+    required: helpers.withMessage(message.signUpValidation.lastNameReq, required),
   },
   password: {
-    required: helpers.withMessage("Password is required", required),
+    required: helpers.withMessage(message.signUpValidation.passwordInvalid, required),
     isValid: helpers.withMessage(
-        "Password should be at least 8 symbols, should contain lowercase and uppercase letters, should not contain first name or last name",
-        customRules.password([signUpModel.firstName, signUpModel.lastName]))
+        message.signUpValidation.passwordInvalid,
+        helpers.withParams(
+            {names: [signUpModel.firstName, signUpModel.lastName]},
+            customRules.password([signUpModel.firstName, signUpModel.lastName])
+        )
+    ),
   },
   email: {
-    required: helpers.withMessage("Email is required", required),
-    isValid: helpers.withMessage("Email is not valid", customRules.email)
+    required: helpers.withMessage(message.signUpValidation.emailReq, required),
+    isValid: helpers.withMessage(message.signUpValidation.emailInvalid, customRules.email)
   }
 }));
 
-const v$ = useVuelidate(rules.value, signUpModel, {$lazy: true});
+const v$ = useVuelidate(rules, signUpModel, {$lazy: true});
 
 const handleSubmit = ():void => {
   console.log(signUpModel);
