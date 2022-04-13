@@ -1,0 +1,20 @@
+{
+  "common": {
+    "signUp": "Sign Up",
+    "submit": "Submit"
+  },
+  "signupLabels": {
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "password": "Password"
+  },
+  "signUpValidation": {
+    "firstNameReq": "First Name is required",
+    "lastNameReq": "Last Name is required",
+    "emailReq": "Email is required",
+    "emailInvalid": "Email is not valid",
+    "passwordReq": "Password is required",
+    "passwordInvalid": "Password should be at least 8 symbols, should contain lowercase and uppercase letters, should not contain first name or last name"
+  }
+}

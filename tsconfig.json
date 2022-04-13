@@ -10,7 +10,13 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "esModuleInterop": true,
-    "lib": ["esnext", "dom"]
+    "lib": ["esnext", "dom"],
+    "allowSyntheticDefaultImports": true,
+  },
+  "paths": {
+    "#app/*": [
+      "./src/*"
+    ],
   },
   "include": [
     "src/**/*.ts",

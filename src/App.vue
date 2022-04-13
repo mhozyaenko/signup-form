@@ -1,9 +1,9 @@
 <template>
-  <Auth/>
+  <SignUp />
 </template>
 
 <script setup lang="ts">
-import Auth from "./layouts/Auth.vue";
+import SignUp from "./pages/SignUp.vue";
 </script>
 
 <style>
