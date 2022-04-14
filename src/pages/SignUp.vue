@@ -1,6 +1,6 @@
 <template>
-  <div class="grid align-items-center justify-content-center h-screen">
-    <Card class="md:col-6 sm:col-9 col-10">
+  <div class="grid align-items-center justify-content-center h-screen surface-ground">
+    <Card class="lg:col-4 md:col-6 sm:col-9 col-10">
       <template #title>
         <h3 class="text-center">
           {{ message.common.signUp }}
@@ -77,6 +77,7 @@
               type="submit"
               label="Submit"
               :disabled="!v$.$dirty || v$.$invalid"
+              :loading="dataLoading"
           />
         </form>
       </template>
@@ -86,25 +87,26 @@
 </template>
 
 <script lang="ts" setup>
-import {computed, reactive} from "vue";
-
-import { useVuelidate } from "@vuelidate/core";
+import {computed, reactive, ref} from "vue";
+import {ErrorObject, useVuelidate} from "@vuelidate/core";
 import { helpers, required } from "@vuelidate/validators";
+
 import {customRules} from "#app/helpers/validation";
+import * as message from "#app/messages/base.json";
+import {postUserSignUp} from "#app/api/user";
+
+import {SignUpInterface} from "#app/models/signUpModel";
+
+import BaseInputWrapper from "#app/components/BaseInputWrapper.vue";
 import Card from "primevue/card";
 import InputText from "primevue/inputtext";
 import Password from "primevue/password";
 import Button from "primevue/button";
-import BaseInputWrapper from "../components/BaseInputWrapper.vue";
-import * as message from "#app/messages/base.json";
+import {useToast} from "primevue/usetoast";
 
+const toast = useToast();
 
-interface SignUpInterface {
-  firstName: string,
-  lastName: string,
-  password: string,
-  email: string,
-}
+const dataLoading = ref(false);
 
 const signUpModel:SignUpInterface = reactive( {
   firstName: "",
@@ -112,8 +114,6 @@ const signUpModel:SignUpInterface = reactive( {
   password: "",
   email: "",
 });
-
-const arr = computed(() => [signUpModel.firstName, signUpModel.lastName])
 
 const rules = computed(() => ({
   firstName: {
@@ -140,8 +140,32 @@ const rules = computed(() => ({
 
 const v$ = useVuelidate(rules, signUpModel, {$lazy: true});
 
-const handleSubmit = ():void => {
-  console.log(signUpModel);
+const handleSubmit = async() => {
+  dataLoading.value = true;
+  try {
+    const response = await postUserSignUp(signUpModel);
+
+    console.log(response)
+
+    toast.add({
+      severity: "success",
+      summary: message.signUpResponses.succesTitle,
+      detail: message.signUpResponses.successDetail,
+      life: 3000,
+    });
+  }
+  catch (e: any) {
+    console.log(e);
+    toast.add({
+      severity: "error",
+      summary: message.signUpResponses.errorTitle,
+      detail: e.message,
+      life: 3000,
+    })
+  }
+  finally {
+    dataLoading.value = false;
+  }
 }
 
 </script>

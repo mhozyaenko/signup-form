@@ -1,8 +1,10 @@
 <template>
   <SignUp />
+  <Toast/>
 </template>
 
 <script setup lang="ts">
+import Toast from "primevue/toast";
 import SignUp from "./pages/SignUp.vue";
 </script>
 

@@ -1,7 +1,8 @@
 {
   "common": {
     "signUp": "Sign Up",
-    "submit": "Submit"
+    "submit": "Submit",
+    "apiError": "Failed to process request. Please try again later"
   },
   "signupLabels": {
     "firstName": "First Name",
@@ -16,5 +17,10 @@
     "emailInvalid": "Email is not valid",
     "passwordReq": "Password is required",
     "passwordInvalid": "Password should be at least 8 symbols, should contain lowercase and uppercase letters, should not contain first name or last name"
+  },
+  "signUpResponses": {
+    "successTitle": "Congrats!",
+    "successDetail": "welcome to our incredible app!",
+    "errorTitle": "OOPS! Something went wrong!"
   }
 }
