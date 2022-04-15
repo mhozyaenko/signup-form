@@ -145,17 +145,14 @@ const handleSubmit = async() => {
   try {
     const response = await postUserSignUp(signUpModel);
 
-    console.log(response)
-
     toast.add({
       severity: "success",
-      summary: message.signUpResponses.succesTitle,
+      summary: message.signUpResponses.successTitle,
       detail: message.signUpResponses.successDetail,
       life: 3000,
     });
   }
   catch (e: any) {
-    console.log(e);
     toast.add({
       severity: "error",
       summary: message.signUpResponses.errorTitle,

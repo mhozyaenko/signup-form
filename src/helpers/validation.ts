@@ -8,5 +8,5 @@ export const customRules = {
         return (/^(?=.*[A-Z])(?=.*[a-z]).{8,}$/.test(value) && namesRegexp.test(value));
     },
     email: (value:string):boolean =>
-        (/^[\w,.!#$%&'*+\/=?^_`{|}~-]+@([\w-]+\.)+\w\w+$/.test(value)),
+        (/^[\w,.!#$%&'*+/=?^_`{|}~-]+@([\w-]+\.)+\w\w+$/.test(value)),
 };

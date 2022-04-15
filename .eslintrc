@@ -7,8 +7,7 @@
   "extends": [
     "plugin:@typescript-eslint/recommended",
     "plugin:vue/vue3-essential",
-    "eslint:recommended",
-    "@vue/prettier"
+    "eslint:recommended"
   ],
   "parserOptions": {
     "ecmaVersion": 2021,
@@ -27,12 +26,6 @@
   },
   "rules": {
     "no-console": "warn",
-    "no-debugger": "warn",
-    "prettier/prettier": [
-      "warn",
-      {
-        "trailingComma": "es5"
-      }
-    ]
+    "no-debugger": "warn"
   }
 }

@@ -3,4 +3,4 @@ export interface SignUpInterface {
     lastName: string,
     password: string,
     email: string,
-};
+}

@@ -5,8 +5,10 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
-    "preview": "vite preview"
+    "lint": "eslint .",
+    "lint-fix": "eslint . --fix"
   },
+  "type": "module",
   "imports": {
     "#app/*": {
       "default": "./src/*"
